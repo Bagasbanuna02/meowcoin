@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, memo } from "react";
+import { motion } from "framer-motion";
 
 interface TradingViewWidgetProps {
   symbol?: string;
@@ -85,58 +86,65 @@ const TradingViewWidget: React.FC<TradingViewWidgetProps> = ({
   }, [symbol, theme, interval]);
 
   return (
-    <div
-      id="chart"
-      style={{
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
-        padding: "20px",
-        marginTop: "10px",
-        borderTopLeftRadius: "10px",
-        borderTopRightRadius: "10px",
-      }}
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
     >
-      <div style={{ width: "100%", height: `${height}px`, margin: "auto" }}>
-        <div
-          ref={containerRef}
-          className="tradingview-widget-container"
-          style={{
-            height: "100%",
-            width: "100%",
-            position: "relative",
-            backgroundColor: theme === "dark" ? "#1a1a1a" : "#ffffff",
-          }}
-        >
+      <div
+        id="chart"
+        style={{
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
+          padding: "20px",
+          marginTop: "10px",
+          borderTopLeftRadius: "10px",
+          borderTopRightRadius: "10px",
+        }}
+      >
+        <div style={{ width: "100%", height: `${height}px`, margin: "auto" }}>
           <div
-            className="tradingview-widget-container__widget"
+            ref={containerRef}
+            className="tradingview-widget-container"
             style={{
-              height: "calc(100% - 32px)",
+              height: "100%",
               width: "100%",
-            }}
-          />
-          <div
-            className="tradingview-widget-copyright"
-            style={{
-              fontSize: "12px",
-              textAlign: "center",
-              padding: "8px",
-              color: theme === "dark" ? "#888" : "#666",
+              position: "relative",
+              backgroundColor: theme === "dark" ? "#1a1a1a" : "#ffffff",
             }}
           >
-            <a
-              href="https://www.tradingview.com/"
-              rel="noopener nofollow"
-              target="_blank"
+            <div
+              className="tradingview-widget-container__widget"
               style={{
-                color: theme === "dark" ? "#2196F3" : "#1976D2",
-                textDecoration: "none",
+                height: "calc(100% - 32px)",
+                width: "100%",
+              }}
+            />
+            <div
+              className="tradingview-widget-copyright"
+              style={{
+                fontSize: "12px",
+                textAlign: "center",
+                padding: "8px",
+                color: theme === "dark" ? "#888" : "#666",
               }}
             >
-              Track all markets on TradingView
-            </a>
+              <a
+                href="https://www.tradingview.com/"
+                rel="noopener nofollow"
+                target="_blank"
+                style={{
+                  color: theme === "dark" ? "#2196F3" : "#1976D2",
+                  textDecoration: "none",
+                }}
+              >
+                Track all markets on TradingView
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
