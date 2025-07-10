@@ -20,11 +20,9 @@ import { HowToBuySection } from "./how-to-buy-section";
 import { RoadmapSection } from "./road-map-section";
 
 import dynamic from "next/dynamic";
+import { MobileNav } from "./mobile-nav-section";
 
-const TradingViewWidget = dynamic(
-  () => import("./view-chart"),
-  { ssr: false }
-);
+const TradingViewWidget = dynamic(() => import("./view-chart"), { ssr: false });
 
 export default function MeowcoinLanding() {
   const theme = useMantineTheme();
@@ -147,41 +145,6 @@ function BackgroundDecorative() {
       </Box>
     </>
   );
-    
 }
 
-function MobileNav({ setOpened }: { setOpened: (value: boolean) => void }) {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-    setOpened(false);
-  };
 
-  return (
-    <Stack gap="md">
-      {["about", "how-to-buy", "roadmap", "community"].map((section) => (
-        <Button
-          key={section}
-          variant="subtle"
-          color="gray.0"
-          onClick={() => scrollToSection(section)}
-          fullWidth
-          styles={{
-            root: {
-              textTransform: "uppercase",
-              fontWeight: 500,
-              backgroundColor: "transparent",
-              "&:hover": {
-                backgroundColor: "rgba(255, 255, 255, 0.1)",
-              },
-            },
-          }}
-        >
-          {section.replace("-", " ")}
-        </Button>
-      ))}
-    </Stack>
-  );
-}

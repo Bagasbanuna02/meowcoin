@@ -39,7 +39,7 @@ export function Footer() {
             </Group>
 
             <Stack gap={0} ta={{ base: "center", md: "right" }}>
-              <Text c="dimmed">&copy; 2024 MEOWCOIN. All rights reserved.</Text>
+              <Text c="dimmed">&copy; 2025 MEOWCOIN. All rights reserved.</Text>
               <Text size="sm" c="dimmed" mt={4}>
                 Built with ❤️ by the MEOWCOIN community
               </Text>

@@ -14,24 +14,24 @@ export function CommunitySection() {
     {
       name: "Discord",
       icon: "💬",
-      color: "#5865f2",
+      color: "#1da1f2",
       members: "15K+",
       description: "Join our active community for discussions and support",
     },
     {
       name: "Telegram",
       icon: "📱",
-      color: "#0088cc",
+      color: "#1da1f2",
       members: "30K+",
       description: "Get instant updates and chat with the community",
     },
-    {
-      name: "GitHub",
-      icon: "⚡",
-      color: "#333",
-      members: "500+",
-      description: "Explore our open-source code and contribute",
-    },
+    // {
+    //   name: "GitHub",
+    //   icon: "⚡",
+    //   color: "#1da1f2",
+    //   members: "500+",
+    //   description: "Explore our open-source code and contribute",
+    // },
   ];
 
   return (
@@ -48,7 +48,7 @@ export function CommunitySection() {
             </Text>
           </Stack>
 
-          <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }} spacing="lg">
+          <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing="lg">
             {socialPlatforms.map((platform, index) => (
               <Card
                 key={index}
