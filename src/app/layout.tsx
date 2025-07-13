@@ -1,6 +1,8 @@
 import type React from "react";
 import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
 import { MantineProvider, createTheme } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
 
 // Custom theme for MEOWCOIN
 const theme = createTheme({
@@ -37,7 +39,10 @@ export default function RootLayout({
         />
       </head>
       <body cz-shortcut-listen="true">
-        <MantineProvider theme={theme}>{children}</MantineProvider>
+        <MantineProvider theme={theme}>
+          <Notifications position="top-center" />
+          {children}
+        </MantineProvider>
       </body>
     </html>
   );
