@@ -12,7 +12,7 @@ generator client {
 datasource db {
   provider  = "postgresql"
   url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  // directUrl = env("DIRECT_URL")
 }
 
 model User {
@@ -25,6 +25,15 @@ model User {
 }
 
 model HeroSection {
+  id          String   @id @default(cuid())
+  subtitle    String
+  description String
+  link        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model AboutSection {
   id          String   @id @default(cuid())
   subtitle    String
   description String
