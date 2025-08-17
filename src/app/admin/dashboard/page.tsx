@@ -43,16 +43,6 @@ export default function Dashboard() {
               </Text>
             </Stack>
 
-            <Stack gap={0}>
-              <Text>Card 1</Text>
-              <Text>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Reiciendis, totam harum odit dolor fugit vitae illo quod labore
-                natus doloremque soluta, error eum impedit, veritatis aperiam
-                aut facilis possimus ullam!
-              </Text>
-            </Stack>
-
             {Array.from({ length: 4 }).map((_, index) => (
               <Stack gap={0} key={index}>
                 <Text>Card {index + 1}</Text>
