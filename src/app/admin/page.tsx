@@ -21,7 +21,6 @@ export default function Admin() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(data);
     const res = await fetch("/api/user", {
       method: "POST",
       headers: {

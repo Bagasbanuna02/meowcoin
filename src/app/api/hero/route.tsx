@@ -17,12 +17,14 @@ async function POST(request: Request) {
   const body = await request.json();
   const { subtitle, description, link } = body;
 
-  if (!subtitle || !description || !link) {
-    return NextResponse.json(
-      { error: "Missing subtitle, description, or link" },
-      { status: 400 }
-    );
-  }
+  // if (!subtitle || !description || !link) {
+  //   return NextResponse.json(
+  //     { error: "Missing subtitle, description, or link" },
+  //     { status: 400 }
+  //   );
+  // }
+
+  
 
   const heroSection = await prisma.heroSection.upsert({
     where: {

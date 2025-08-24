@@ -25,7 +25,6 @@ export default function Community() {
   async function onLoadData() {
     const res = await fetch("/api/community");
     const result = await res.json();
-    console.log("data:", result.data);
     setData(result?.data);
   }
 
@@ -70,7 +69,7 @@ export default function Community() {
         </Paper>
 
         {_.isEmpty(data) ? (
-          <Loader size={"lg"} color="yellow" />
+          <Loader color="yellow" />
         ) : (
           data?.map((item, index) => (
             <Paper withBorder p={"md"} key={index}>

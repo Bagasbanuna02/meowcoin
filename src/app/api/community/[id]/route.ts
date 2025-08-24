@@ -34,7 +34,6 @@ async function PUT(request: Request) {
     );
   }
 
-  console.log("API", body);
 
   const communitySection = await prisma.communitySection.update({
     where: {

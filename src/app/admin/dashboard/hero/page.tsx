@@ -2,6 +2,7 @@
 
 import {
   Button,
+  Loader,
   Paper,
   Stack,
   Text,
@@ -31,7 +32,6 @@ export default function Hero() {
   async function onLoadData() {
     const res = await fetch("/api/hero");
     const result = await res.json();
-    console.log("data:", result.data);
     setData({
       subtitle: result?.data?.subtitle,
       description: result?.data?.description,
@@ -40,12 +40,18 @@ export default function Hero() {
   }
 
   const handleSubmit = async () => {
+    const fixData = {
+      subtitle: update.subtitle || data.subtitle,
+      description: update.description || data.description,
+      link: update.link || data.link,
+    };
+
     const res = await fetch("/api/hero", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(update),
+      body: JSON.stringify(fixData),
     });
 
     const result = await res.json();
@@ -73,17 +79,17 @@ export default function Hero() {
 
             <Stack gap={0}>
               <Text>Sub title:</Text>
-              <Text>{data.subtitle || ""}</Text>
+              <Text>{data.subtitle || <Loader size="sm" />}</Text>
             </Stack>
 
             <Stack gap={0}>
               <Text>Deskripsi:</Text>
-              <Text>{data.description || ""}</Text>
+              <Text>{data.description || <Loader size="sm" />}</Text>
             </Stack>
 
             <Stack gap={0}>
               <Text>Link buy now:</Text>
-              <Text>{data.link || ""}</Text>
+              <Text>{data.link || <Loader size="sm" />}</Text>
             </Stack>
           </Stack>
         </Paper>
@@ -107,7 +113,16 @@ export default function Hero() {
             onChange={(e) => setUpdate({ ...update, link: e.target.value })}
           />
 
-          <Button onClick={handleSubmit}>Submit</Button>
+          <Button
+            disabled={
+              update.subtitle === "" &&
+              update.description === "" &&
+              update.link === ""
+            }
+            onClick={handleSubmit}
+          >
+            Submit
+          </Button>
         </Stack>
       </Stack>
     </>

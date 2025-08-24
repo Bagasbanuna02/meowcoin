@@ -4,44 +4,30 @@ import { NextResponse } from "next/server";
 export { GET, POST };
 
 async function GET() {
-  const data = await prisma.aboutSection.findFirst();
+  const data = await prisma.aboutSection.findMany();
 
   return NextResponse.json({
     status: 200,
-    message: "Berhasil",
+    message: "Berhasil mengambil data about",
     data: data,
   });
 }
 
 async function POST(request: Request) {
   const body = await request.json();
-  const { description, card1, card2, card3, card4 } = body;
+  const { title, description } = body;
 
-  if (!description || !card1 || !card2 || !card3 || !card4) {
+  if (!title || !description) {
     return NextResponse.json(
-      { error: "Missing description, card1, card2, card3, or card4" },
+      { error: "Missing title or description" },
       { status: 400 }
     );
   }
 
-  const aboutSection = await prisma.aboutSection.upsert({
-    where: {
-      id: "1",
-    },
-    create: {
-      id: "1",
+  const aboutSection = await prisma.aboutSection.create({
+    data: {
+      title,
       description,
-      card1,
-      card2,
-      card3,
-      card4,
-    },
-    update: {
-      description,
-      card1,
-      card2,
-      card3,
-      card4,
     },
   });
 
@@ -51,3 +37,4 @@ async function POST(request: Request) {
     data: aboutSection,
   });
 }
+
