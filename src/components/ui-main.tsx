@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
@@ -9,7 +10,7 @@ import {
   rem,
   useMantineTheme,
 } from "@mantine/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AboutSection } from "./about-section";
 import { ChartSection } from "./chart-section";
 import { CommunitySection } from "./community-section";
@@ -28,6 +29,43 @@ const TradingViewWidget = dynamic(() => import("./view-chart"), { ssr: false });
 export default function MeowcoinLanding() {
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
+  const [dataHero, setDataHero] = useState({
+    subtitle: "",
+    description: "",
+    link: "",
+  });
+
+  const [dataAbout, setDataAbout] = useState<any[]>([]);
+
+  const [dataCommunity, setDataCommunity] = useState<any[]>([]);
+
+  useEffect(() => {
+    onLoadHero();
+    onLoadAbout();
+    onLoadCommunity();
+  }, []);
+
+  async function onLoadHero() {
+    const res = await fetch("/api/hero");
+    const result = await res.json();
+    setDataHero({
+      subtitle: result?.data?.subtitle,
+      description: result?.data?.description,
+      link: result?.data?.link,
+    });
+  }
+
+  async function onLoadAbout() {
+    const res = await fetch("/api/about");
+    const result = await res.json();
+    setDataAbout(result?.data);
+  }
+
+  async function onLoadCommunity() {
+    const res = await fetch("/api/community");
+    const result = await res.json();
+    setDataCommunity(result?.data);
+  }
 
   return (
     <AppShell
@@ -63,15 +101,15 @@ export default function MeowcoinLanding() {
         <BackgroundDecorative />
 
         <Box style={{ position: "relative", zIndex: 1 }}>
-          <HeroSection />
+          <HeroSection dataHero={dataHero} />
           <TradingViewWidget
             symbol="CRYPTOCAP:SOL"
             height={700}
             interval="15"
             theme="dark"
           />
-          <AboutSection />
-          <CommunitySection />
+          <AboutSection dataAbout={dataAbout} />
+          <CommunitySection dataCommunity={dataCommunity} />
           <Footer />
         </Box>
       </AppShell.Main>
@@ -151,5 +189,3 @@ function BackgroundDecorative() {
     </>
   );
 }
-
-

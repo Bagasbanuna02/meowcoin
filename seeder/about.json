@@ -1,17 +1,21 @@
 [
   {
+    "id": "1",
     "title": "Community First",
     "description": "Built by the community, for the community. Every decision is made together."
   },
   {
+    "id": "2",
     "title": "Secure & Safe",
     "description": "Audited smart contracts and transparent tokenomics for your peace of mind."
   },
   {
+    "id": "3",
     "title": "Lightning Fast",
     "description": "Built on efficient blockchain technology for instant transactions."
   },
   {
+    "id": "4",
     "title": "Growing Family",
     "description": "Join thousands of cat lovers and crypto enthusiasts worldwide."
   }

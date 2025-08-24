@@ -1,8 +1,8 @@
 /* eslint-disable prefer-const */
 import prisma from "@/lib/prisma";
-import hero from "../bin/hero.json";
-import about from "../bin/about.json";
-import community from "../bin/community.json";
+import hero from "../seeder/hero.json";
+import about from "../seeder/about.json";
+import community from "../seeder/community.json";
 
 (async () => {
   console.log("start seeder >>");
@@ -22,24 +22,15 @@ import community from "../bin/community.json";
     process.exit(1);
   });
 
-async function generateRandomId() {
-  return (
-    "id-" +
-    Date.now().toString(36) +
-    "-" +
-    Math.random().toString(36).substring(2, 8)
-  );
-}
-
 async function seedHero() {
   try {
     for (let i of hero) {
       await prisma.heroSection.upsert({
         where: {
-          id: (await generateRandomId()).toString(),
+          id: i.id,
         },
         create: {
-          id: (await generateRandomId()).toString(),
+          id: i.id,
           subtitle: i.subtitle,
           description: i.description,
           link: i.link,
@@ -62,10 +53,10 @@ async function seedAbout() {
     for (let i of about) {
       await prisma.aboutSection.upsert({
         where: {
-          id: (await generateRandomId()).toString(),
+          id: i.id,
         },
         create: {
-          id: (await generateRandomId()).toString(),
+          id: i.id,
           title: i.title,
           description: i.description,
         },
@@ -86,10 +77,10 @@ async function seedCommunity() {
     for (let i of community) {
       await prisma.communitySection.upsert({
         where: {
-          id: (await generateRandomId()).toString(),
+          id: i.id,
         },
         create: {
-          id: (await generateRandomId()).toString(),
+          id: i.id,
           name: i.name,
           link: i.link,
           description: i.description,
