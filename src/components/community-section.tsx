@@ -1,20 +1,58 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {
-  Button,
-  Card,
-  Container,
-  Paper,
-  rem,
-  SimpleGrid,
-  Stack,
-  Text,
-  Title,
-  useMantineTheme,
-} from "@mantine/core";
 import { motion } from "framer-motion";
+import {
+  useMantineTheme,
+  Container,
+  rem,
+  Stack,
+  Title,
+  SimpleGrid,
+  Card,
+  Paper,
+  Button,
+  Text,
+} from "@mantine/core";
+import Link from "next/link";
 
-export function CommunitySection({ dataCommunity }: { dataCommunity: any }) {
+export function CommunitySection({
+  dataCommunity,
+  linkHero,
+}: {
+  dataCommunity: any;
+  linkHero: string;
+}) {
   const theme = useMantineTheme();
+
+  // const socialPlatforms = [
+  //   {
+  //     name: "Twitter",
+  //     icon: "🐦",
+  //     color: "#1da1f2",
+  //     members: "25K+",
+  //     description: "Follow us for real-time updates and community news",
+  //   },
+  //   {
+  //     name: "Discord",
+  //     icon: "💬",
+  //     color: "#1da1f2",
+  //     members: "15K+",
+  //     description: "Join our active community for discussions and support",
+  //   },
+  //   {
+  //     name: "Telegram",
+  //     icon: "📱",
+  //     color: "#1da1f2",
+  //     members: "30K+",
+  //     description: "Get instant updates and chat with the community",
+  //   },
+  //   // {
+  //   //   name: "GitHub",
+  //   //   icon: "⚡",
+  //   //   color: "#1da1f2",
+  //   //   members: "500+",
+  //   //   description: "Explore our open-source code and contribute",
+  //   // },
+  // ];
 
   return (
     <section id="community">
@@ -52,7 +90,7 @@ export function CommunitySection({ dataCommunity }: { dataCommunity: any }) {
                   padding="lg"
                   style={{
                     borderColor: item.color,
-                    backgroundColor: `${item.color}22`,
+                    backgroundColor: "#1da1f222",
                     cursor: "pointer",
                     transition: "transform 200ms ease",
                   }}
@@ -64,19 +102,6 @@ export function CommunitySection({ dataCommunity }: { dataCommunity: any }) {
                   }}
                 >
                   <Stack gap="md" align="center">
-                    {/* <Paper
-                      w={rem(64)}
-                      h={rem(64)}
-                      radius="xl"
-                      style={{
-                        backgroundColor: item.color,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                     
-                    </Paper> */}
                     <Text fw={600} size="lg" c="white">
                       {item.name}
                     </Text>
@@ -84,15 +109,11 @@ export function CommunitySection({ dataCommunity }: { dataCommunity: any }) {
                       {item.description}
                     </Text>
                     <Stack gap={0} align="center">
-                      <Text size="xl" fw={700} style={{ color: item.color }}>
-                        {item.members}
+                      <Text size="xl" fw={700} style={{ color: "white" }}>
+                        {item.total}
                       </Text>
                       <Text size="sm" c="dimmed">
-                        {item.name === "GitHub"
-                          ? "Stars"
-                          : item.name === "Twitter"
-                          ? "Followers"
-                          : "Members"}
+                        Members
                       </Text>
                     </Stack>
                   </Stack>
@@ -129,6 +150,9 @@ export function CommunitySection({ dataCommunity }: { dataCommunity: any }) {
                   radius="xl"
                   color="white"
                   c={theme.colors.orange[6]}
+                  component={Link}
+                  href={linkHero}
+                  target="_blank"
                 >
                   Get Started Now
                 </Button>

@@ -109,7 +109,7 @@ export default function MeowcoinLanding() {
             theme="dark"
           />
           <AboutSection dataAbout={dataAbout} />
-          <CommunitySection dataCommunity={dataCommunity} />
+          <CommunitySection dataCommunity={dataCommunity} linkHero={dataHero.link} />
           <Footer />
         </Box>
       </AppShell.Main>

@@ -5,6 +5,7 @@ import {
   Container,
   Paper,
   rem,
+  ScrollArea,
   SimpleGrid,
   Stack,
   Text,
@@ -62,35 +63,29 @@ export function AboutSection({ dataAbout }: { dataAbout: any }) {
                     style={{
                       borderColor: theme.colors.violet[6],
                       backgroundColor: theme.colors.dark[8],
+                      height: 200,
                     }}
                   >
-                    <Stack gap="md" align="center">
-                      <Paper
-                        w={rem(64)}
-                        h={rem(64)}
-                        radius="xl"
-                        bg={theme.colors.orange[5]}
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <Text size={rem(24)}>{item.icon}</Text>
-                      </Paper>
+                    <Stack align="center">
                       <Text fw={600} size="lg" c="white">
                         {item.title}
                       </Text>
-                      <Text c="gray.3" ta="center">
-                        {item.description}
-                      </Text>
+                      <ScrollArea style={{ height: 120 }}>
+                        <Text c="gray.3" ta="center">
+                          {item.description} Lorem ipsum dolor sit amet
+                          consectetur adipisicing elit. Quae explicabo maxime
+                          tenetur, eos earum eum. Eligendi veritatis voluptatum
+                          reiciendis esse aliquid. Soluta nihil neque quis
+                          reprehenderit ducimus laboriosam officia voluptates!
+                        </Text>
+                      </ScrollArea>
                     </Stack>
                   </Card>
                 </motion.div>
               ))}
             </SimpleGrid>
 
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -137,7 +132,7 @@ export function AboutSection({ dataAbout }: { dataAbout: any }) {
                   </SimpleGrid>
                 </Stack>
               </Paper>
-            </motion.div>
+            </motion.div> */}
           </Stack>
         </Container>
       </Box>
