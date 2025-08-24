@@ -70,10 +70,7 @@ export default function MeowcoinLanding() {
             interval="15"
             theme="dark"
           />
-          {/* <ChartSection /> */}
           <AboutSection />
-          {/* <HowToBuySection /> */}
-          {/* <RoadmapSection />  */}
           <CommunitySection />
           <Footer />
         </Box>
