@@ -3,14 +3,13 @@ import {
   Box,
   Card,
   Container,
-  Paper,
   rem,
   ScrollArea,
   SimpleGrid,
   Stack,
   Text,
   Title,
-  useMantineTheme,
+  useMantineTheme
 } from "@mantine/core";
 import { motion } from "framer-motion";
 
