@@ -71,12 +71,7 @@ export function AboutSection({ dataAbout }: { dataAbout: any }) {
                       </Text>
                       <ScrollArea style={{ height: 120 }}>
                         <Text c="gray.3" ta="center">
-                          {item.description} Lorem ipsum dolor sit amet
-                          consectetur adipisicing elit. Quae explicabo maxime
-                          tenetur, eos earum eum. Eligendi veritatis voluptatum
-                          reiciendis esse aliquid. Soluta nihil neque quis
-                          reprehenderit ducimus laboriosam officia voluptates!
-                        </Text>
+                          {item.description} </Text>
                       </ScrollArea>
                     </Stack>
                   </Card>

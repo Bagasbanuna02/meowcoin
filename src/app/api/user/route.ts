@@ -6,22 +6,26 @@ export async function POST(request: Request) {
   const { username, password } = body;
 
   if (!username || !password) {
-    return NextResponse.json({ error: "Missing username or password" }, { status: 400 });
+    return NextResponse.json(
+      { error: "Missing username or password" },
+      { status: 400 }
+    );
   }
 
   const user = await prisma.user.findFirst({
     where: {
       username,
-      password
+      password,
     },
   });
-
-
-
 
   if (!user) {
     return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
 
-  return NextResponse.json(user);
+  return NextResponse.json({
+    status: 200,
+    message: "User found",
+    data: user,
+  });
 }

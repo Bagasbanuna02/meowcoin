@@ -3,10 +3,12 @@ import prisma from "@/lib/prisma";
 import hero from "../seeder/hero.json";
 import about from "../seeder/about.json";
 import community from "../seeder/community.json";
+import user from "../seeder/user.json";
 
 (async () => {
   console.log("start seeder >>");
   try {
+    await seedUser();
     await seedHero();
     await seedAbout();
     await seedCommunity();
@@ -21,6 +23,32 @@ import community from "../seeder/community.json";
     console.error("<< error seeder", e);
     process.exit(1);
   });
+
+async function seedUser() {
+  try {
+    for (let i of user) {
+      await prisma.user.upsert({
+        where: {
+          id: i.id,
+        },
+        create: {
+          id: i.id,
+          username: i.username,
+          password: i.password,
+          email: i.email,
+        },
+        update: {
+          username: i.username,
+          password: i.password,
+          email: i.email,
+        },
+      });
+    }
+    console.log("seeder user berhasil");
+  } catch (error) {
+    console.log("seeder user gagal", error);
+  }
+}
 
 async function seedHero() {
   try {
