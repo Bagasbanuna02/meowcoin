@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Box,
   Button,
-  Container,
   Grid,
   Group,
   Image,
@@ -10,13 +9,13 @@ import {
   Stack,
   Text,
   Title,
-  useMantineTheme,
+  useMantineTheme
 } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
-export function HeroSection() {
+export function HeroSection({ dataHero }: { dataHero: any }) {
   const theme = useMantineTheme();
   const matches = useMediaQuery("(min-width: 768px)");
 
@@ -53,28 +52,25 @@ export function HeroSection() {
                     c={theme.colors.orange[4]}
                     fw={700}
                   >
-                    THE FUTURE OF MEME COINS
+                    {dataHero?.subtitle}
                   </Title>
                   <Text
                     size={matches ? "md" : "lg"}
                     c="gray.2"
                     maw={matches ? rem(300) : rem(500)}
                   >
-                    A community-driven meme token that loves cat and pawsitively
-                    changes the crypto world forever.
+                    {dataHero?.description}
                   </Text>
                 </Stack>
 
                 <Group gap="md" wrap="nowrap">
                   <Button
+                    component={Link}
+                    href={dataHero && dataHero?.link ? dataHero?.link : "#"}
                     size={matches ? "md" : "lg"}
                     radius="xl"
                     color="orange"
-                    onClick={() =>
-                      document
-                        .getElementById("how-to-buy")
-                        ?.scrollIntoView({ behavior: "smooth" })
-                    }
+                    target="_blank"
                   >
                     BUY NOW
                   </Button>

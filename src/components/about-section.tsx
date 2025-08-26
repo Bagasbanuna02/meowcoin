@@ -1,46 +1,20 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
-  useMantineTheme,
   Box,
-  rem,
-  Container,
-  Stack,
-  Title,
-  SimpleGrid,
   Card,
-  Paper,
+  Container,
+  rem,
+  ScrollArea,
+  SimpleGrid,
+  Stack,
   Text,
+  Title,
+  useMantineTheme
 } from "@mantine/core";
 import { motion } from "framer-motion";
 
-export function AboutSection() {
+export function AboutSection({ dataAbout }: { dataAbout: any }) {
   const theme = useMantineTheme();
-
-  const features = [
-    {
-      icon: "❤️",
-      title: "Community First",
-      description:
-        "Built by the community, for the community. Every decision is made together.",
-    },
-    {
-      icon: "🛡️",
-      title: "Secure & Safe",
-      description:
-        "Audited smart contracts and transparent tokenomics for your peace of mind.",
-    },
-    {
-      icon: "⚡",
-      title: "Lightning Fast",
-      description:
-        "Built on efficient blockchain technology for instant transactions.",
-    },
-    {
-      icon: "👥",
-      title: "Growing Family",
-      description:
-        "Join thousands of cat lovers and crypto enthusiasts worldwide.",
-    },
-  ];
 
   return (
     <section id="about">
@@ -73,7 +47,7 @@ export function AboutSection() {
             </motion.div>
 
             <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }} spacing="lg">
-              {features.map((feature, index) => (
+              {dataAbout.map((item: any, index: any) => (
                 <motion.div
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -88,35 +62,24 @@ export function AboutSection() {
                     style={{
                       borderColor: theme.colors.violet[6],
                       backgroundColor: theme.colors.dark[8],
+                      height: 200,
                     }}
                   >
-                    <Stack gap="md" align="center">
-                      <Paper
-                        w={rem(64)}
-                        h={rem(64)}
-                        radius="xl"
-                        bg={theme.colors.orange[5]}
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <Text size={rem(24)}>{feature.icon}</Text>
-                      </Paper>
+                    <Stack align="center">
                       <Text fw={600} size="lg" c="white">
-                        {feature.title}
+                        {item.title}
                       </Text>
-                      <Text c="gray.3" ta="center">
-                        {feature.description}
-                      </Text>
+                      <ScrollArea style={{ height: 120 }}>
+                        <Text c="gray.3" ta="center">
+                          {item.description} </Text>
+                      </ScrollArea>
                     </Stack>
                   </Card>
                 </motion.div>
               ))}
             </SimpleGrid>
 
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -163,7 +126,7 @@ export function AboutSection() {
                   </SimpleGrid>
                 </Stack>
               </Paper>
-            </motion.div>
+            </motion.div> */}
           </Stack>
         </Container>
       </Box>

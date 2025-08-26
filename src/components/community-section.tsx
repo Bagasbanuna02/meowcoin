@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { motion } from "framer-motion";
 import {
   useMantineTheme,
@@ -11,40 +12,47 @@ import {
   Button,
   Text,
 } from "@mantine/core";
+import Link from "next/link";
 
-export function CommunitySection() {
+export function CommunitySection({
+  dataCommunity,
+  linkHero,
+}: {
+  dataCommunity: any;
+  linkHero: string;
+}) {
   const theme = useMantineTheme();
 
-  const socialPlatforms = [
-    {
-      name: "Twitter",
-      icon: "🐦",
-      color: "#1da1f2",
-      members: "25K+",
-      description: "Follow us for real-time updates and community news",
-    },
-    {
-      name: "Discord",
-      icon: "💬",
-      color: "#1da1f2",
-      members: "15K+",
-      description: "Join our active community for discussions and support",
-    },
-    {
-      name: "Telegram",
-      icon: "📱",
-      color: "#1da1f2",
-      members: "30K+",
-      description: "Get instant updates and chat with the community",
-    },
-    // {
-    //   name: "GitHub",
-    //   icon: "⚡",
-    //   color: "#1da1f2",
-    //   members: "500+",
-    //   description: "Explore our open-source code and contribute",
-    // },
-  ];
+  // const socialPlatforms = [
+  //   {
+  //     name: "Twitter",
+  //     icon: "🐦",
+  //     color: "#1da1f2",
+  //     members: "25K+",
+  //     description: "Follow us for real-time updates and community news",
+  //   },
+  //   {
+  //     name: "Discord",
+  //     icon: "💬",
+  //     color: "#1da1f2",
+  //     members: "15K+",
+  //     description: "Join our active community for discussions and support",
+  //   },
+  //   {
+  //     name: "Telegram",
+  //     icon: "📱",
+  //     color: "#1da1f2",
+  //     members: "30K+",
+  //     description: "Get instant updates and chat with the community",
+  //   },
+  //   // {
+  //   //   name: "GitHub",
+  //   //   icon: "⚡",
+  //   //   color: "#1da1f2",
+  //   //   members: "500+",
+  //   //   description: "Explore our open-source code and contribute",
+  //   // },
+  // ];
 
   return (
     <section id="community">
@@ -68,7 +76,7 @@ export function CommunitySection() {
           </motion.div>
 
           <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing="lg">
-            {socialPlatforms.map((platform, index) => (
+            {dataCommunity.map((item: any, index: any) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 50 }}
@@ -81,8 +89,8 @@ export function CommunitySection() {
                   radius="md"
                   padding="lg"
                   style={{
-                    borderColor: platform.color,
-                    backgroundColor: `${platform.color}22`,
+                    borderColor: item.color,
+                    backgroundColor: "#1da1f222",
                     cursor: "pointer",
                     transition: "transform 200ms ease",
                   }}
@@ -94,39 +102,18 @@ export function CommunitySection() {
                   }}
                 >
                   <Stack gap="md" align="center">
-                    <Paper
-                      w={rem(64)}
-                      h={rem(64)}
-                      radius="xl"
-                      style={{
-                        backgroundColor: platform.color,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <Text size={rem(24)}>{platform.icon}</Text>
-                    </Paper>
                     <Text fw={600} size="lg" c="white">
-                      {platform.name}
+                      {item.name}
                     </Text>
                     <Text c="gray.3" ta="center">
-                      {platform.description}
+                      {item.description}
                     </Text>
                     <Stack gap={0} align="center">
-                      <Text
-                        size="xl"
-                        fw={700}
-                        style={{ color: platform.color }}
-                      >
-                        {platform.members}
+                      <Text size="xl" fw={700} style={{ color: "white" }}>
+                        {item.total}
                       </Text>
                       <Text size="sm" c="dimmed">
-                        {platform.name === "GitHub"
-                          ? "Stars"
-                          : platform.name === "Twitter"
-                          ? "Followers"
-                          : "Members"}
+                        Members
                       </Text>
                     </Stack>
                   </Stack>
@@ -163,6 +150,9 @@ export function CommunitySection() {
                   radius="xl"
                   color="white"
                   c={theme.colors.orange[6]}
+                  component={Link}
+                  href={linkHero}
+                  target="_blank"
                 >
                   Get Started Now
                 </Button>

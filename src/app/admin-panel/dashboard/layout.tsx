@@ -4,6 +4,7 @@
 import {
   AppShell,
   Avatar,
+  Box,
   Burger,
   Group,
   Image,
@@ -18,7 +19,7 @@ import {
   IconImageInPicture,
   IconInfoCircle,
 } from "@tabler/icons-react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function LayoutDashboard({
@@ -26,6 +27,7 @@ export default function LayoutDashboard({
 }: {
   children: React.ReactNode;
 }) {
+  const router = useRouter();
   const pathname = usePathname();
   const [opened, { toggle }] = useDisclosure();
   const [active, setActive] = useState(pathname);
@@ -33,22 +35,22 @@ export default function LayoutDashboard({
   const listPage = [
     {
       label: "Dashboard",
-      href: "/admin/dashboard",
+      href: "/admin-panel/dashboard",
       icon: <IconDashboard size={25} />,
     },
     {
       label: "Hero",
-      href: "/admin/dashboard/hero",
+      href: "/admin-panel/dashboard/hero",
       icon: <IconImageInPicture size={25} />,
     },
     {
       label: "About",
-      href: "/admin/dashboard/about",
+      href: "/admin-panel/dashboard/about",
       icon: <IconInfoCircle size={25} />,
     },
     {
       label: "Community",
-      href: "/admin/dashboard/community",
+      href: "/admin-panel/dashboard/community",
       icon: <IconBubbleTextFilled size={25} />,
     },
   ];
@@ -67,17 +69,41 @@ export default function LayoutDashboard({
     >
       <AppShell.Header bg={"grape"}>
         <Group h="100%" px="md">
-          <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" color="white" />
-          <Avatar bg={"white"}>
-            <Image
-              src="/assets/logo.png"
-              alt="Logo"
-              w={30}
-              h={30}
-              fit="contain"
-            />
-          </Avatar>
-          <Title order={4} ta="center" c={"white"}>
+          <Burger
+            opened={opened}
+            onClick={toggle}
+            hiddenFrom="sm"
+            size="sm"
+            color="white"
+          />
+          <Box
+            style={{
+              cursor: "pointer",
+              borderRadius: 50,
+              border: "1px solid white",
+              padding: 2,
+            }}
+            onClick={() => router.push("/")}
+          >
+            <Avatar bg={"grape"}>
+              <Image
+                src="/assets/logo.png"
+                alt="Logo"
+                w={30}
+                h={30}
+                fit="contain"
+              />
+            </Avatar>
+          </Box>
+          <Title
+            order={4}
+            ta="center"
+            c={"white"}
+            onClick={() => router.push("/")}
+            style={{
+              cursor: "pointer",
+            }}
+          >
             Meowcoin
           </Title>
         </Group>
