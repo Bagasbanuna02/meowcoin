@@ -92,7 +92,7 @@ export default function About() {
             <Group justify="space-between">
               <Title order={4}>About Section</Title>
               <Button
-                onClick={() => router.push("/admin/dashboard/about/create")}
+                onClick={() => router.push("/admin-panel/dashboard/about/create")}
               >
                 Tambah
               </Button>
@@ -116,7 +116,7 @@ export default function About() {
                   <Button
                     justify="center"
                     onClick={() =>
-                      router.push(`/admin/dashboard/about/${item.id}`)
+                      router.push(`/admin-panel/dashboard/about/${item.id}`)
                     }
                   >
                     Edit

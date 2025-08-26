@@ -44,7 +44,7 @@ export default function Admin() {
       message: "User signed in successfully",
       color: "green",
     });
-    router.push("/admin/dashboard");
+    router.push("/admin-panel/dashboard");
   };
 
   redirect("/admin-panel/dashboard");

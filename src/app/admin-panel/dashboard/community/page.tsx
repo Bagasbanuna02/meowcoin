@@ -60,7 +60,7 @@ export default function Community() {
               <Title order={4}>Community Section</Title>
               <Button
                 component={Link}
-                href={"/admin/dashboard/community/create"}
+                href={"/admin-panel/dashboard/community/create"}
               >
                 Tambah
               </Button>
@@ -83,7 +83,7 @@ export default function Community() {
               <Group mt={"md"}>
                 <Button
                   component={Link}
-                  href={`/admin/dashboard/community/${item.id}`}
+                  href={`/admin-panel/dashboard/community/${item.id}`}
                 >
                   Edit
                 </Button>

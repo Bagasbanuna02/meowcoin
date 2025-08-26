@@ -3,8 +3,8 @@ import { NextResponse } from "next/server";
 
 export { GET, PUT, DELETE };
 
-async function GET(request: Request, { params }: { params: { id: string } }) {
-  const { id } = params;
+async function GET(request: Request) {
+  const id = request.url.split("/").pop();
 
   const data = await prisma.aboutSection.findUnique({
     where: {
@@ -19,8 +19,8 @@ async function GET(request: Request, { params }: { params: { id: string } }) {
   });
 }
 
-async function PUT(request: Request, { params }: { params: { id: string } }) {
-  const { id } = params;
+async function PUT(request: Request) {
+  const id = request.url.split("/").pop();
   const body = await request.json();
   const { title, description } = body;
   if (!title || !description) {
@@ -47,8 +47,8 @@ async function PUT(request: Request, { params }: { params: { id: string } }) {
   });
 }
 
-async function DELETE(request: Request, { params }: { params: { id: string } }) {
-  const { id } = params;
+async function DELETE(request: Request) {
+  const id = request.url.split("/").pop();
 
   const aboutSection = await prisma.aboutSection.delete({
     where: {

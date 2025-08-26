@@ -66,7 +66,7 @@ export default function CommunityEdit() {
   return (
     <>
       <Stack>
-        <ActionIcon component={Link} href={"/admin/dashboard/community"}>
+        <ActionIcon component={Link} href={"/admin-panel/dashboard/community"}>
           <IconArrowLeft />
         </ActionIcon>
 

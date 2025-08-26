@@ -41,13 +41,13 @@ export default function CreateCommunity() {
       color: "green",
     });
 
-    router.push("/admin/dashboard/community");
+    router.push("/admin-panel/dashboard/community");
   };
 
   return (
     <>
       <Stack>
-        <ActionIcon component={Link} href={"/admin/dashboard/community"}>
+        <ActionIcon component={Link} href={"/admin-panel/dashboard/community"}>
           <IconArrowLeft />
         </ActionIcon>
 
